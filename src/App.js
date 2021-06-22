@@ -5,7 +5,7 @@ import {
   FormControl,
   Select,
   Card,
-  CardContent,
+  CardContent
 } from "@material-ui/core";
 import InfoBox from "./InfoBox";
 import LineGraph from "./LineGraph";
@@ -14,6 +14,8 @@ import { sortData, prettyPrintStat } from "./util";
 import numeral from "numeral";
 import Map from "./Map";
 import "leaflet/dist/leaflet.css";
+// import {Button} from 'react-native';
+
 
 const App = () => {
   const [country, setInputCountry] = useState("worldwide");
@@ -33,7 +35,7 @@ const App = () => {
       });
   }, []);
 
-  useEffect(() => {
+  useEffect(() => { 
     const getCountriesData = async () => {
       fetch("https://disease.sh/v3/covid-19/countries")
         .then((response) => response.json())
@@ -41,7 +43,7 @@ const App = () => {
           const countries = data.map((country) => ({
             name: country.country,
             value: country.countryInfo.iso2,
-          }));
+          })); 
           let sortedData = sortData(data);
           setCountries(countries);
           setMapCountries(data);
@@ -87,7 +89,7 @@ const App = () => {
                 <MenuItem value={country.value}>{country.name}</MenuItem>
               ))}
             </Select>
-          </FormControl>
+          </FormControl >
         </div>
         <div className="app__stats">
           <InfoBox
@@ -131,6 +133,11 @@ const App = () => {
           </div>
         </CardContent>
       </Card>
+      {/* <div>
+        <a>For More Information on Covid-19 
+        <Button variant="primary">Primary</Button>
+        </a>
+      </div> */}
     </div>
   );
 };
